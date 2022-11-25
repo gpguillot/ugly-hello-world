@@ -7,13 +7,15 @@ public class Controller
    {
       System.out.println("[INFO] Starting program...");
       Controller controller = new Controller();
-      controller.run(28);
+      String helloWorld = controller.run(28);
+      System.out.println(helloWorld);
    }
    
-   public void run(int size)
+   public String run(int size)
    {
       int iteration = 0;
       boolean isMatch = false;
+      String attemptWord = null;
       
       String targetWord = "Hello World.";
       System.out.println("[INFO] Target word set as [" + targetWord + "]...");
@@ -25,7 +27,7 @@ public class Controller
          
          // System.out.println("[INFO] Building word from set of pairs...");
          WordBuilder builder = new WordBuilder(targetWord, pairs);
-         String attemptWord = builder.getBuiltWord(); 
+         attemptWord = builder.getBuiltWord(); 
          
          Hasher hasher = new Hasher();
          long targetHash  = hasher.performPolynomialRollingHash(targetWord);
@@ -48,7 +50,8 @@ public class Controller
                   "[Iteration: " + iteration + "]");
          }
       }
-
+      
+      return attemptWord;
    }
    
 } 
